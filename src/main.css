@@ -1,0 +1,63 @@
+body {
+    background-color: #03002e !important;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+
+.intro{
+    height: 1000px;
+}
+
+.intro  i {
+    color:#ffffff;
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #03002e;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #8b8b8b;
+}
+
+
+.intro h1{
+    color: #ffffff;
+    font-size: 80px;
+    margin-left: 250px;
+    margin-right: 250px;
+}
+.intro h5{
+    color: #ffffff;
+    margin-right: 250px;
+    margin-left: 250px;
+}
+
+.projects a, p, h4{
+    color:#ffffff;
+    margin-right: 60px;
+    margin-left: 60px;
+}
+
+.row img{
+    border-radius:15px;
+    border-style: solid;
+    border-width: 2px;
+
+    border-color:  white ;
+}
