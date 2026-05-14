@@ -1,111 +1,723 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Lydia's Portfolio</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="main.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap');
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lydia Cenac</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
 
-        * {
-            box-sizing: border-box;
-        }
-        @media only screen and (max-width:800px) {
-            /* For tablets: */
-            .main {
-                width: 80%;
-                padding: 0;
-            }
-            .right {
-                width: 100%;
-            }
-        }
-        @media only screen and (max-width:500px) {
-            /* For mobile phones: */
-            .sn, .main, .right {
-                width: 100%;
-            }
-        }
+    :root {
+      --ink:      #1e1a2e;
+      --ink2:     #2d2845;
+      --paper:    #f5f0eb;
+      --paper2:   #ede7df;
+      --lav:      #7c5cbf;
+      --lav-lt:   #b49de0;
+      --lav-pale: #ede8f8;
+      --warm:     #c97b4b;
+      --text:     #2d2845;
+      --muted:    #7a6f8a;
+      --soft:     #c4b8d8;
+    }
 
-        .h:hover{
-            color:red;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
+    body {
+      background: var(--paper);
+      color: var(--text);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
 
-    </style>
-    <script src="https://kit.fontawesome.com/b346deaf2a.js" crossorigin="anonymous"></script>
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--paper2); }
+    ::-webkit-scrollbar-thumb { background: var(--lav-lt); border-radius: 20px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 60px;
+      background: rgba(245,240,235,0.88);
+      backdrop-filter: blur(12px);
+    }
+    .logo {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--lav);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 2px; border-radius: 2px;
+      background: var(--lav);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s;
+    }
+    .nav-links a:hover { color: var(--lav); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 160px 60px 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-left {}
+    .hero-tag {
+      display: inline-block;
+      background: var(--lav-pale);
+      color: var(--lav);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 99px;
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    h1 .wave {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 0.45em;
+      color: var(--lav);
+      letter-spacing: 0em;
+      line-height: 2;
+    }
+    .hero-bio {
+      margin: 28px 0 40px;
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 13px 28px;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: all 0.22s;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: none; cursor: pointer;
+    }
+    .btn-fill {
+      background: var(--lav);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(124,92,191,0.28);
+    }
+    .btn-fill:hover { background: #6a4aab; box-shadow: 0 6px 24px rgba(124,92,191,0.4); transform: translateY(-1px); }
+    .btn-soft {
+      background: var(--lav-pale);
+      color: var(--lav);
+    }
+    .btn-soft:hover { background: #ddd4f5; }
+
+    /* hero right — decorative card stack */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 40px;
+    }
+    .hero-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px 28px;
+      box-shadow: 0 4px 24px rgba(44,40,69,0.07);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+      transform: rotate(-1deg);
+      transition: transform 0.3s;
+    }
+    .hero-card:nth-child(2) { transform: rotate(1.2deg); }
+    .hero-card:nth-child(3) { transform: rotate(-0.6deg); }
+    .hero-card:hover { transform: rotate(0) scale(1.02); }
+    .hc-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--lav-pale);
+      color: var(--lav);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .hc-label { font-size: 0.78rem; color: var(--muted); font-weight: 400; margin-top: 2px; }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 96px 60px; }
+    #projects   { background: var(--paper2); }
+    #experience { background: var(--paper); }
+    #skills     { background: var(--ink); }
+    #about      { background: var(--paper2); }
+
+    .sec-head {
+      display: flex; align-items: baseline; gap: 16px;
+      margin-bottom: 56px;
+    }
+    .sec-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    #skills .sec-title { color: var(--paper); }
+    .sec-num {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--lav-lt);
+    }
+    #skills .sec-num { color: var(--soft); }
+
+    /* ── PROJECTS ── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .proj-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 14px;
+      box-shadow: 0 2px 16px rgba(44,40,69,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .proj-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 36px rgba(124,92,191,0.14);
+    }
+    .proj-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--lav-lt);
+    }
+    .proj-card h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.45rem;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+    .proj-type {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--lav);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .proj-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.72;
+      flex: 1;
+    }
+    .proj-footer {
+      display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      padding-top: 18px;
+      margin-top: auto;
+    }
+    .chip {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 99px;
+      background: var(--lav-pale);
+      color: var(--lav);
+    }
+    .proj-link {
+      margin-left: auto;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--lav);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 4px;
+      transition: gap 0.2s;
+    }
+    .proj-link:hover { gap: 8px; }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 48px;
+      padding: 40px 0;
+      border-bottom: 2px dotted var(--paper2);
+    }
+    .exp-card:first-child { border-top: 2px dotted var(--paper2); }
+    .exp-side {}
+    .exp-org {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .exp-when {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .exp-body h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .exp-role {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--lav);
+      background: var(--lav-pale);
+      padding: 3px 12px;
+      border-radius: 99px;
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .bullets li {
+      font-size: 0.9rem; color: var(--muted); padding-left: 20px; position: relative; line-height: 1.65;
+    }
+    .bullets li::before { content: '✦'; position: absolute; left: 0; color: var(--lav-lt); font-size: 0.55rem; top: 6px; }
+
+    /* ── SKILLS ── */
+    #skills {
+      border-radius: 32px;
+      margin: 0 24px;
+    }
+    #skills .sec-title { color: var(--paper); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .sg {
+      background: rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 28px 22px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .sg h4 {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1rem;
+      color: var(--lav-lt);
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .sg ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .sg li { font-size: 0.88rem; color: rgba(237,231,223,0.75); font-weight: 300; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-text h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+    .about-text h2 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--lav);
+    }
+    .about-text p {
+      color: var(--muted); font-size: 0.95rem;
+      line-height: 1.85; margin-bottom: 16px;
+    }
+
+    .stat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .stat {
+      background: #fff;
+      border-radius: 20px;
+      padding: 28px 22px;
+      box-shadow: 0 2px 16px rgba(44,40,69,0.06);
+      transition: transform 0.2s;
+    }
+    .stat:hover { transform: translateY(-3px); }
+    .stat-n {
+      font-family: 'Fraunces', serif;
+      font-weight: 900;
+      font-size: 2.8rem;
+      line-height: 1;
+      color: var(--lav);
+      margin-bottom: 6px;
+    }
+    .stat-l {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 20px;
+      background: var(--ink);
+    }
+    footer p { font-size: 0.82rem; color: rgba(237,231,223,0.45); }
+    .foot-links { display: flex; gap: 28px; list-style: none; }
+    .foot-links a {
+      font-size: 0.82rem; font-weight: 500;
+      color: rgba(237,231,223,0.55); text-decoration: none; transition: color 0.2s;
+    }
+    .foot-links a:hover { color: var(--lav-lt); }
+
+    /* ── FADE IN ── */
+    .fi { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fi.on { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 130px 24px 80px; }
+      .hero-right { display: none; }
+      section { padding: 72px 24px; }
+      #skills { margin: 0 12px; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .exp-card { grid-template-columns: 1fr; gap: 10px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      footer { padding: 36px 24px; flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 500px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">Lydia Cenac</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
 
-<div class="intro">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <H1>Hi, I'm Lydia</H1>
-
-
-    <h5>I'm a second-year computer science student at the University at Buffalo, from Brooklyn. This is my portfolio— there's a lot of front-end and UX projects on here, but I also have projects that use C and Java as I've been learning them in school. <br><br> <a target="_blank" href ="https://www.linkedin.com/in/lydia-cenac-02b60b1b2/"><i  class="fa-brands fa-linkedin fa-lg"> </i></a>&nbsp;
-        <i class="fa-brands fa-github fa-lg"></i></h5>
-
-</div>
-
-
-
-<div class = "projects">
-    <div class= "row">
-        <div class="col-4">
-            <a href="https://cafe-lily-tech360.lydiacenac.repl.co/" target="_blank"><img src="assets/cafelily.gif"class="center"></a>
-
-            <a href="https://cafe-lily-tech360.lydiacenac.repl.co/" target="_blank" class="h" > <h4>Cafe Lily (2019)</h4></a>
-            <p>This was my first ever site. I was taking a course for HTML and CSS and this was a group project. We were given a fake client that wanted a website for their coffee shop. Here I learned how to use bootstrap to make the UI more user-friendly.</p>
-        </div>
-        <br>
-        <div class="col-4">
-            <a href="https://streamfree.lydiacenac.repl.co/" target="_blank"><img src="assets/streamfree.gif" class="center"></a>
-            <a href="https://streamfree.lydiacenac.repl.co/"target="_blank"class="h"><h4>StreamFree (2020) </h4></a>
-            <p>A streaming site for movies and tv shows.</p>
-        </div>
-        <div class="col-4">
-            <a href="https://CheddarRun.lydiacenac.repl.co" target="_blank"><img src="assets/cheddarun.gif" class="center"></a>
-            <a href = "https://CheddarRun.lydiacenac.repl.co" target="_blank"class="h"><h4>CheddarRun</h4></a>
-            <p>Mock up of a food delivery site. I was trying to use a more creative style for this one by experimenting with new fonts and color themes. </p>
-        </div>
-
-
-        <div class= "row">
-            <div class="col-4">
-                <a href="https://www.figma.com/proto/9Jjgl6xFHgRSipIXpTZfrz/Duffle?node-id=3%3A11&starting-point-node-id=1%3A2" target="_blank"><img src="assets/duffle.gif" class="center"></a>
-                <h4>Duffle (2020)</h4>
-                <p>A prototype application for booking flights.</p>
-            </div>
-            <br>
-            <div class="col-4">
-
-
-            </div>
-            <div class="col-4">
-
-            </div>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag">CS Student &amp; Developer — UB '26</span>
+    <h1>
+      Lydia<br>Cenac.
+      <span class="wave">builds things she cares about.</span>
+    </h1>
+    <p class="hero-bio">
+      Full-stack developer and UX thinker from Brooklyn, NY.
+      I write C, ship React apps, and believe good software should
+      actually feel good to use.
+    </p>
+    <div class="cta-row">
+      <a href="#projects" class="btn btn-fill">See my work ↓</a>
+      <a href="https://www.linkedin.com/in/lydia-cenac-02b60b1b2/" target="_blank" class="btn btn-soft">LinkedIn ↗</a>
+      <a href="https://github.com/lcenac" target="_blank" class="btn btn-soft">GitHub ↗</a>
     </div>
-</div>div>
-<div class = "about">
-    <p></p>
-</div>
+  </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hc-icon">🏀</div>
+      <div>
+        <div>hot_shot — NBA streak tracker</div>
+        <div class="hc-label">React · FastAPI · Python</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-icon">🥗</div>
+      <div>
+        <div>Lettuce Turnip The Beet</div>
+        <div class="hc-label">React · PHP · MySQL</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-icon">💬</div>
+      <div>
+        <div>Instant Messenger App</div>
+        <div class="hc-label">C · Networking · Linux</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-icon">🧠</div>
+      <div>
+        <div>Dynamic Memory Allocator</div>
+        <div class="hc-label">C · Systems · Heap mgmt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Selected Projects</h2>
+  </div>
+  <div class="proj-grid">
+
+    <div class="proj-card fi">
+      <div class="proj-dot"></div>
+      <p class="proj-type">Full-Stack · Sports Analytics</p>
+      <h3>hot_shot</h3>
+      <p>Tracks NBA and WNBA player hot and cold streaks over 10, 15, and 20-game windows. FastAPI backend fetches and processes player stats; React frontend visualizes trends and performance data dynamically.</p>
+      <div class="proj-footer">
+        <span class="chip">React</span>
+        <span class="chip">FastAPI</span>
+        <span class="chip">Python</span>
+        <a href="https://github.com/lcenac/hot_shot" target="_blank" class="proj-link">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card fi">
+      <div class="proj-dot"></div>
+      <p class="proj-type">Full-Stack · Food &amp; Health</p>
+      <h3>Lettuce Turnip The Beet</h3>
+      <p>Recipe recommendation web app based on user preferences and pantry items. Features nutrition trivia, weight-progress tracking, meal planning, and social recipe sharing via community submissions.</p>
+      <div class="proj-footer">
+        <span class="chip">React</span>
+        <span class="chip">PHP</span>
+        <span class="chip">MySQL</span>
+      </div>
+    </div>
+
+    <div class="proj-card fi">
+      <div class="proj-dot"></div>
+      <p class="proj-type">Systems · C</p>
+      <h3>Dynamic Memory Allocator</h3>
+      <p>Custom allocator implementing malloc, calloc, realloc, and free from scratch. Built a free-list structure to manage variable-sized memory blocks using pointer arithmetic and manual heap management.</p>
+      <div class="proj-footer">
+        <span class="chip">C</span>
+        <span class="chip">Systems</span>
+        <span class="chip">Memory Mgmt</span>
+      </div>
+    </div>
+
+    <div class="proj-card fi">
+      <div class="proj-dot"></div>
+      <p class="proj-type">Systems · Networking · C</p>
+      <h3>Instant Messenger App</h3>
+      <p>Terminal-based chat application in C with real-time messaging, status updates, and user commands. Leveraged pointer math and low-level I/O for efficient data handling.</p>
+      <div class="proj-footer">
+        <span class="chip">C</span>
+        <span class="chip">Networking</span>
+        <span class="chip">Linux</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Experience</h2>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-card fi">
+      <div class="exp-side">
+        <div class="exp-org">University at Buffalo</div>
+        <div class="exp-when">Aug 2023 – Dec 2025<br>Buffalo, NY</div>
+      </div>
+      <div class="exp-body">
+        <h3>CS Teaching Assistant</h3>
+        <span class="exp-role">Data Structures &amp; Algorithms</span>
+        <ul class="bullets">
+          <li>Supported students through labs and office hours on data structures, algorithms, and OOP</li>
+          <li>Debugged student Java assignments, walking through logic, execution, and error handling</li>
+          <li>Graded quizzes and conducted short technical interviews to assess comprehension</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card fi">
+      <div class="exp-side">
+        <div class="exp-org">Content Economy Co.</div>
+        <div class="exp-when">Jun – Aug 2021<br>Remote</div>
+      </div>
+      <div class="exp-body">
+        <h3>UX/UI Design Intern</h3>
+        <span class="exp-role">Product Design</span>
+        <ul class="bullets">
+          <li>Redesigned a workflow application used by marketing teams — improved navigation and usability</li>
+          <li>Built interactive Figma prototypes and presented designs directly to the CEO and engineering team</li>
+          <li>Ran user testing sessions and synthesized feedback into actionable design iterations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card fi">
+      <div class="exp-side">
+        <div class="exp-org">America On Tech</div>
+        <div class="exp-when">Sep 2020 – May 2021<br>New York, NY</div>
+      </div>
+      <div class="exp-body">
+        <h3>Tech Flex Leader</h3>
+        <span class="exp-role">Front-End Development</span>
+        <ul class="bullets">
+          <li>Completed 160+ hours of front-end training (HTML, CSS, JavaScript, Bootstrap)</li>
+          <li>Attended career days hosted at leading tech and media organizations</li>
+          <li>Shipped a streaming site for movies and TV shows as a capstone project</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-head">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Skills &amp; Tools</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="sg fi">
+      <h4>Languages</h4>
+      <ul>
+        <li>Java</li><li>C</li><li>Python</li><li>Go</li>
+        <li>SQL</li><li>HTML / CSS</li><li>OCaml</li><li>PHP</li>
+      </ul>
+    </div>
+    <div class="sg fi">
+      <h4>Technologies</h4>
+      <ul>
+        <li>React</li><li>Bootstrap</li><li>FastAPI</li>
+        <li>MySQL</li><li>JUnit</li><li>Git / GitHub</li><li>Figma</li>
+      </ul>
+    </div>
+    <div class="sg fi">
+      <h4>Concepts</h4>
+      <ul>
+        <li>Data Structures &amp; Algorithms</li>
+        <li>Systems Programming</li>
+        <li>Distributed Systems</li>
+        <li>RESTful APIs</li>
+        <li>Unit Testing</li>
+        <li>Agile / Scrum</li>
+      </ul>
+    </div>
+    <div class="sg fi">
+      <h4>Other</h4>
+      <ul>
+        <li>Linux / Unix</li>
+        <li>UX Research</li>
+        <li>Prototype Design</li>
+        <li>Project Management</li>
+        <li>Technical Interviewing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text fi">
+      <h2>Brooklyn kid,<br><em>Buffalo grad.</em></h2>
+      <p>I'm a Computer Science student at the University at Buffalo graduating in May 2026, with a minor in Music Performance. I've spent the last four years getting deep into both high-level product thinking and low-level systems work.</p>
+      <p>I care about building things that are thoughtfully designed and technically solid — whether that's a RESTful API, a Figma prototype, or a memory allocator in C.</p>
+      <p>Outside of code, I'm into music (hence the minor) and probably thinking about basketball statistics.</p>
+      <a href="mailto:lydia.cenac@gmail.com" class="btn btn-fill" style="margin-top:20px;">Say hello →</a>
+    </div>
+    <div class="stat-grid fi">
+      <div class="stat"><div class="stat-n">4+</div><div class="stat-l">Years coding</div></div>
+      <div class="stat"><div class="stat-n">160+</div><div class="stat-l">Hours front-end training</div></div>
+      <div class="stat"><div class="stat-n">8+</div><div class="stat-l">Languages &amp; frameworks</div></div>
+      <div class="stat"><div class="stat-n">UB</div><div class="stat-l">CS + Music, '26</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Lydia Cenac — Built from scratch.</p>
+  <ul class="foot-links">
+    <li><a href="https://www.linkedin.com/in/lydia-cenac-02b60b1b2/" target="_blank">LinkedIn</a></li>
+    <li><a href="https://github.com/lcenac" target="_blank">GitHub</a></li>
+    <li><a href="mailto:lydia.cenac@gmail.com">Email</a></li>
+  </ul>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('on'), parseInt(e.target.dataset.d) || 0);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fi').forEach((el, i) => {
+    el.dataset.d = (i % 4) * 90;
+    io.observe(el);
+  });
+</script>
 </body>
 </html>
